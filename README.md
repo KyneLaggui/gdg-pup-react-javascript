@@ -92,7 +92,3 @@ In GitHub Desktop, click Clone to download the repository to your local machine.
 ## 🎉 Happy Coding!
 
 We’re excited to see your creativity and dedication shine through this project. Let’s make this an amazing learning experience together. Remember, every line of code you write brings you one step closer to mastering React. Good luck, and enjoy the journey! 🚀💻
-
----
-
-Let me know if you'd like any further adjustments!
