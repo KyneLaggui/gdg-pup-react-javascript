@@ -1,0 +1,28 @@
+.counter-container {
+  text-align: center;
+  padding: 2rem;
+}
+
+.counter-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.counter-value {
+  font-size: 1.5rem;
+}
+
+.increment-button {
+  margin-top: 1rem;
+  background-color: #007bff;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.increment-button:hover {
+  background-color: #0056b3;
+}
