@@ -3,6 +3,7 @@ import AssignmentOne from "./Assignments/AssignmentOne/AssignmentOne";
 import AssignmentTwo from "./Assignments/AssignmentTwo/AssignmentTwo";
 import AssignmentThree from "./Assignments/AssignmentThree/AssignmentThree";
 import AssignmentFour from "./Assignments/AssignmentFour/AssignmentFour";
+import "./App.css";
 
 function App() {
   const [selectedTab, setSelectedTab] = useState("one");
