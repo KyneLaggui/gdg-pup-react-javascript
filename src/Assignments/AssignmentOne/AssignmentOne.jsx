@@ -5,6 +5,7 @@ function AssignmentOne() {
   const [count, setCount] = useState(0);
 
   const incrementCounter = () => setCount(count + 1);
+  const decrementCounter = () => setCount(count - 1);
 
   return (
     <div className="counter-container">
@@ -13,6 +14,9 @@ function AssignmentOne() {
       <button className="increment-button" onClick={incrementCounter}>
         Increment
       </button>
+      <button className="decrement-button" onClick={decrementCounter}>
+        Decrement
+      </button>{" "}
     </div>
   );
 }
