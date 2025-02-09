@@ -1,6 +1,9 @@
 .counter-container {
-  text-align: center;
-  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }
 
 .counter-title {
@@ -13,16 +16,39 @@
   font-size: 1.5rem;
 }
 
-.increment-button {
+.increment-button,
+.decrement-button {
   margin-top: 1rem;
-  background-color: #007bff;
   color: white;
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 5px;
+  font-size: 1rem;
   cursor: pointer;
+}
+
+.increment-button {
+  background-color: #007bff;
+}
+
+.decrement-button {
+  background-color: red;
 }
 
 .increment-button:hover {
   background-color: #0056b3;
+}
+
+.button-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.assignment-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 800px;
+  margin-top: 1rem;
+  line-height: 24px;
 }
