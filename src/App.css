@@ -1,8 +1,18 @@
+.header-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
 .tabs {
   display: flex;
-  justify-content: start;
+  justify-content: space-around;
   align-items: center;
   gap: 10px;
+  width: 100%;
 }
 
 .tabs button {
@@ -38,5 +48,5 @@
 }
 
 .tab-content {
-  margin-top: 20px;
+  padding: 1rem;
 }

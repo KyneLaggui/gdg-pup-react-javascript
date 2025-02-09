@@ -19,16 +19,19 @@ function App() {
 
   return (
     <>
-      <div className="tabs">
-        {tabButtons.map((tab) => (
-          <button
-            key={tab.id}
-            className={selectedTab === tab.id ? "active" : ""}
-            onClick={() => handleTabChange(tab.id)}
-          >
-            {tab.label}
-          </button>
-        ))}
+      <div className="header-container">
+        <h1>GDG Web Development React Assigments & Projects</h1>
+        <div className="tabs">
+          {tabButtons.map((tab) => (
+            <button
+              key={tab.id}
+              className={selectedTab === tab.id ? "active" : ""}
+              onClick={() => handleTabChange(tab.id)}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
       </div>
 
       <div className="tab-content">
