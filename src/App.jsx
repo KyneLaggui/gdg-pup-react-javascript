@@ -10,13 +10,25 @@ function App() {
 
   const handleTabChange = (tab) => setSelectedTab(tab);
 
+  const tabButtons = [
+    { id: "one", label: "Assignment 1" },
+    { id: "two", label: "Assignment 2" },
+    { id: "three", label: "Assignment 3" },
+    { id: "four", label: "Assignment 4" },
+  ];
+
   return (
     <>
       <div className="tabs">
-        <button onClick={() => handleTabChange("one")}>Assignment 1</button>
-        <button onClick={() => handleTabChange("two")}>Assignment 2</button>
-        <button onClick={() => handleTabChange("three")}>Assignment 3</button>
-        <button onClick={() => handleTabChange("four")}>Assignment 4</button>
+        {tabButtons.map((tab) => (
+          <button
+            key={tab.id}
+            className={selectedTab === tab.id ? "active" : ""}
+            onClick={() => handleTabChange(tab.id)}
+          >
+            {tab.label}
+          </button>
+        ))}
       </div>
 
       <div className="tab-content">

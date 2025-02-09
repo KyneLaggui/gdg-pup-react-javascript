@@ -1,13 +1,40 @@
-.tabs button {
-  margin: 0 10px;
-  padding: 10px;
-  background-color: #f0f0f0;
-  border: none;
-  cursor: pointer;
+.tabs {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
 }
 
-.tabs button:hover {
-  background-color: #ddd;
+.tabs button {
+  position: relative;
+  margin: 0 10px;
+  padding: 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.tabs button::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background-color: blue;
+  transition: width 0.3s ease;
+}
+
+.tabs button:hover::before {
+  width: 100%;
+  background-color: blue;
+}
+
+.tabs button.active::before {
+  width: 100%;
 }
 
 .tab-content {
