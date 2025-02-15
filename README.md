@@ -142,6 +142,14 @@ You will now see your React project running locally.
 
 ---
 
+## 👥 Collaborators
+
+- [Kyne Laggui](https://github.com/KyneLaggui)
+- [Angelo Rodelas](https://github.com/Gelatino03083)
+- [Rowine Mabiog](https://github.com/Rowine)
+
+---
+
 ## 🎉 Happy Coding!
 
 We’re excited to see your creativity and dedication shine through this project. Let’s make this an amazing learning experience together. Remember, every line of code you write brings you one step closer to mastering React. Good luck, and enjoy the journey! 🚀💻
