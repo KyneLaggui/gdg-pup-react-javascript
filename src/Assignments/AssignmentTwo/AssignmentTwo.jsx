@@ -31,10 +31,18 @@ function AssignmentTwo() {
   ];
 
   return (
-    <div className="box-container">
-      {data.map((item, index) => (
-        <Box key={index} title={item.title} content={item.content} />
-      ))}
+    <div className="main-container">
+      <h1>Top 3 Major Projects for 2025</h1>
+      <p>
+        Learn how to pass and manage data between parent and child components
+        using props. This exercise focuses on modular, reusable components by
+        dynamically rendering project details inside child components.
+      </p>
+      <div className="box-container">
+        {data.map((item, index) => (
+          <Box key={index} title={item.title} content={item.content} />
+        ))}
+      </div>
     </div>
   );
 }
