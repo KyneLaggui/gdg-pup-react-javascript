@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./AssignmentFour.css"; // Import CSS
 
 function AssignmentFour() {
   const [regions, setRegions] = useState([]);
@@ -13,21 +14,11 @@ function AssignmentFour() {
   const [otherAddress, setOtherAddress] = useState("");
   const [displayAddress, setDisplayAddress] = useState("");
 
-  // State for selected names (instead of codes)
-  const [regionName, setRegionName] = useState("");
-  const [provinceName, setProvinceName] = useState("");
-  const [cityName, setCityName] = useState("");
-  const [barangayName, setBarangayName] = useState("");
-
-  // Fetch all regions using fetch
   useEffect(() => {
     const fetchRegions = async () => {
       try {
         const response = await fetch("https://psgc.cloud/api/regions");
         const data = await response.json();
-        console.log("Fetched regions:", data); // Debug log to inspect the structure
-
-        // Check the structure of the response and set the correct data
         if (Array.isArray(data)) {
           setRegions(data);
         } else {
@@ -50,22 +41,12 @@ function AssignmentFour() {
     setProvinces([]);
     setCities([]);
     setBarangays([]);
-    const selectedRegionData = regions.find(
-      (region) => region.code === regionCode
-    );
-    setRegionName(selectedRegionData ? selectedRegionData.name : "");
 
-    // Fetch provinces for selected region
     if (regionCode) {
       fetch(`https://psgc.cloud/api/regions/${regionCode}/provinces`)
         .then((response) => response.json())
-        .then((data) => {
-          console.log("Fetched provinces:", data);
-          setProvinces(data || []);
-        })
-        .catch((error) => {
-          console.error("Error fetching provinces:", error);
-        });
+        .then((data) => setProvinces(data || []))
+        .catch((error) => console.error("Error fetching provinces:", error));
     }
   };
 
@@ -76,24 +57,13 @@ function AssignmentFour() {
     setSelectedBarangay("");
     setCities([]);
 
-    const selectedProvinceData = provinces.find(
-      (province) => province.code === provinceCode
-    );
-    setProvinceName(selectedProvinceData ? selectedProvinceData.name : "");
-
-    // Fetch cities for selected province
     if (provinceCode) {
       fetch(
         `https://psgc.cloud/api/provinces/${provinceCode}/cities-municipalities`
       )
         .then((response) => response.json())
-        .then((data) => {
-          console.log("Fetched cities:", data);
-          setCities(data || []);
-        })
-        .catch((error) => {
-          console.error("Error fetching cities:", error);
-        });
+        .then((data) => setCities(data || []))
+        .catch((error) => console.error("Error fetching cities:", error));
     }
   };
 
@@ -102,20 +72,11 @@ function AssignmentFour() {
     setSelectedCity(cityCode);
     setSelectedBarangay("");
 
-    const selectedCityData = cities.find((city) => city.code === cityCode);
-    setCityName(selectedCityData ? selectedCityData.name : "");
-
-    // Fetch barangays for selected city
     if (cityCode) {
       fetch(`https://psgc.cloud/api/municipalities/${cityCode}/barangays`)
         .then((response) => response.json())
-        .then((data) => {
-          console.log("Fetched barangays:", data);
-          setBarangays(data || []);
-        })
-        .catch((error) => {
-          console.error("Error fetching barangays:", error);
-        });
+        .then((data) => setBarangays(data || []))
+        .catch((error) => console.error("Error fetching barangays:", error));
     }
   };
 
@@ -130,166 +91,119 @@ function AssignmentFour() {
       alert("Please fill out all required fields.");
       return;
     }
+
+    const regionName =
+      regions.find((region) => region.code === selectedRegion)?.name ||
+      "Unknown Region";
+    const provinceName =
+      provinces.find((province) => province.code === selectedProvince)?.name ||
+      "Unknown Province";
+    const cityName =
+      cities.find((city) => city.code === selectedCity)?.name || "Unknown City";
+    const barangayName =
+      barangays.find((barangay) => barangay.code === selectedBarangay)?.name ||
+      "Unknown Barangay";
+
     setDisplayAddress(
-      `You live in ${barangayName}, ${cityName}, ${provinceName}, ${regionName}, Philippines, ZIP Code: ${zipCode}. Other Address: ${
-        otherAddress || "N/A"
-      }`
+      `You live in   ${
+        otherAddress || ""
+      }, ${barangayName}, ${cityName}, ${provinceName}, ${regionName}, ${zipCode}, Philippines. 
+      `
     );
   };
 
   return (
-    <div className="p-5 max-w-md mx-auto">
-      <h2 className="text-2xl font-semibold mb-4">Address Form</h2>
-
-      <div className="mb-4">
-        <label
-          htmlFor="region"
-          className="block text-sm font-medium text-gray-700"
-        >
-          Region
-        </label>
-        <select
-          id="region"
-          value={selectedRegion}
-          onChange={handleRegionChange}
-          className="w-full p-2 mt-2 border border-gray-300 rounded"
-        >
-          <option value="">Select a Region</option>
-          {regions.length > 0 ? (
-            regions.map((region) => (
+    <div className="address-container">
+      <div className="address-wrapper">
+        <div className="title-container">
+          <h1>My Address</h1>
+          <p>
+            {" "}
+            Explore conditional rendering by fetching address details from an
+            external API. The data is displayed only when successfully
+            retrieved, showcasing how to handle loading states, API errors, and
+            dynamic UI updates effectively.
+          </p>
+        </div>
+        {displayAddress && (
+          <div className="address-display">{displayAddress}</div>
+        )}
+        <div className="form-group">
+          <label htmlFor="region">Region</label>
+          <select
+            id="region"
+            value={selectedRegion}
+            onChange={handleRegionChange}
+          >
+            <option value="">Select a Region</option>
+            {regions.map((region) => (
               <option key={region.code} value={region.code}>
                 {region.name}
               </option>
-            ))
-          ) : (
-            <option value="">No regions available</option>
-          )}
-        </select>
-      </div>
-
-      <div className="mb-4">
-        <label
-          htmlFor="province"
-          className="block text-sm font-medium text-gray-700"
-        >
-          Province
-        </label>
-        <select
-          id="province"
-          value={selectedProvince}
-          onChange={handleProvinceChange}
-          className="w-full p-2 mt-2 border border-gray-300 rounded"
-        >
-          <option value="">Select a Province</option>
-          {provinces.length > 0 ? (
-            provinces.map((province) => (
+            ))}
+          </select>
+        </div>
+        <div className="form-group">
+          <label htmlFor="province">Province</label>
+          <select
+            id="province"
+            value={selectedProvince}
+            onChange={handleProvinceChange}
+          >
+            <option value="">Select a Province</option>
+            {provinces.map((province) => (
               <option key={province.code} value={province.code}>
                 {province.name}
               </option>
-            ))
-          ) : (
-            <option value="">No provinces available</option>
-          )}
-        </select>
-      </div>
-
-      <div className="mb-4">
-        <label
-          htmlFor="city"
-          className="block text-sm font-medium text-gray-700"
-        >
-          City/Municipality
-        </label>
-        <select
-          id="city"
-          value={selectedCity}
-          onChange={handleCityChange}
-          className="w-full p-2 mt-2 border border-gray-300 rounded"
-        >
-          <option value="">Select a City</option>
-          {cities.length > 0 ? (
-            cities.map((city) => (
+            ))}
+          </select>
+        </div>
+        <div className="form-group">
+          <label htmlFor="city">City/Municipality</label>
+          <select id="city" value={selectedCity} onChange={handleCityChange}>
+            <option value="">Select a City</option>
+            {cities.map((city) => (
               <option key={city.code} value={city.code}>
                 {city.name}
               </option>
-            ))
-          ) : (
-            <option value="">No cities available</option>
-          )}
-        </select>
-      </div>
-
-      <div className="mb-4">
-        <label
-          htmlFor="barangay"
-          className="block text-sm font-medium text-gray-700"
-        >
-          Barangay
-        </label>
-        <select
-          id="barangay"
-          value={selectedBarangay}
-          onChange={(e) => setSelectedBarangay(e.target.value)}
-          className="w-full p-2 mt-2 border border-gray-300 rounded"
-        >
-          <option value="">Select a Barangay</option>
-          {barangays.length > 0 ? (
-            barangays.map((barangay) => (
+            ))}
+          </select>
+        </div>
+        <div className="form-group">
+          <label htmlFor="barangay">Barangay</label>
+          <select
+            id="barangay"
+            value={selectedBarangay}
+            onChange={(e) => setSelectedBarangay(e.target.value)}
+          >
+            <option value="">Select a Barangay</option>
+            {barangays.map((barangay) => (
               <option key={barangay.code} value={barangay.code}>
                 {barangay.name}
               </option>
-            ))
-          ) : (
-            <option value="">No barangays available</option>
-          )}
-        </select>
-      </div>
-
-      <div className="mb-4">
-        <label
-          htmlFor="zipCode"
-          className="block text-sm font-medium text-gray-700"
-        >
-          ZIP Code
-        </label>
-        <input
-          id="zipCode"
-          type="text"
-          value={zipCode}
-          onChange={(e) => setZipCode(e.target.value)}
-          className="w-full p-2 mt-2 border border-gray-300 rounded"
-        />
-      </div>
-
-      <div className="mb-4">
-        <label
-          htmlFor="otherAddress"
-          className="block text-sm font-medium text-gray-700"
-        >
-          Other Address (Optional)
-        </label>
-        <input
-          id="otherAddress"
-          type="text"
-          value={otherAddress}
-          onChange={(e) => setOtherAddress(e.target.value)}
-          className="w-full p-2 mt-2 border border-gray-300 rounded"
-        />
-      </div>
-
-      <button
-        onClick={handleConfirm}
-        className="bg-blue-500 text-white px-4 py-2 rounded"
-      >
-        Confirm
-      </button>
-
-      {displayAddress && (
-        <div className="mt-4 p-4 bg-green-100 rounded">
-          <h3 className="text-lg font-semibold">Your Address:</h3>
-          <p>{displayAddress}</p>
+            ))}
+          </select>
         </div>
-      )}
+        <div className="form-group">
+          <label htmlFor="zipCode">ZIP Code</label>
+          <input
+            id="zipCode"
+            type="text"
+            value={zipCode}
+            onChange={(e) => setZipCode(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="otherAddress">Other Address (Optional)</label>
+          <input
+            id="otherAddress"
+            type="text"
+            value={otherAddress}
+            onChange={(e) => setOtherAddress(e.target.value)}
+          />
+        </div>
+        <button onClick={handleConfirm}>Confirm</button>
+      </div>
     </div>
   );
 }
