@@ -36,18 +36,15 @@ This repository contains the following **main** folders:
 
 ---
 
-## 🚀 Project Assignment: Note-Taking App
+## 🚀 Project Assignment: Tenzie Game
 
 ### Project Overview
 
-The final project will be a **Note-Taking App**, where you will apply everything learned throughout the assignments. In this app, users can create, edit, and delete notes, and the state of the app will be managed efficiently using React's state and effect hooks.
+@leads add here
 
 ### Skills Practice
 
-- **State Management**: Using `useState` to manage the state of the app.
-- **Props**: Passing data between components using props.
-- **Side Effects**: Using `useEffect` to fetch and store data.
-- **Conditional Rendering**: Displaying content dynamically based on state or user interaction.
+@leads add here
 
 ---
 
