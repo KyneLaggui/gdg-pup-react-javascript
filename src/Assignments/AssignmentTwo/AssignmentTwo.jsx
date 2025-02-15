@@ -31,7 +31,7 @@ function AssignmentTwo() {
   ];
 
   return (
-    <div className="main-container">
+    <div className="title-container">
       <h1>Top 3 Major Projects for 2025</h1>
       <p>
         Learn how to pass and manage data between parent and child components

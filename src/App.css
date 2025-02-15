@@ -7,6 +7,20 @@
   padding: 2rem;
 }
 
+.title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.title-container p {
+  max-width: 800px;
+}
+
 .tabs {
   display: flex;
   justify-content: space-around;
@@ -62,5 +76,9 @@
 @media only screen and (max-width: 600px) {
   h1 {
     text-align: center;
+  }
+
+  .title-container {
+    padding: 1rem;
   }
 }
