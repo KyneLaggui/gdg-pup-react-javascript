@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./AssignmentThree.css";
 
 function AssignmentThree() {
   const [users, setUsers] = useState([]);
@@ -15,33 +16,42 @@ function AssignmentThree() {
   }, []);
 
   return (
-    <div className="p-5">
-      <h2 className="text-xl font-bold mb-3">User List</h2>
+    <div className="title-container">
+      <h1>User List</h1>
+      <p>
+        Understand how to make API calls in React by fetching and displaying
+        user data from an external API. This project covers using useEffect to
+        trigger data fetching on mount, managing state with useState, and
+        handling potential errors gracefully.
+      </p>
+
       {loading ? (
-        <p>Loading...</p>
+        <p className="loading">Loading...</p>
       ) : (
-        <table className="w-full border-collapse border border-gray-300">
-          <thead>
-            <tr className="bg-gray-200">
-              <th className="border p-2">ID</th>
-              <th className="border p-2">Name</th>
-              <th className="border p-2">Email</th>
-              <th className="border p-2">Phone</th>
-              <th className="border p-2">Company</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user) => (
-              <tr key={user.id} className="text-center border-t">
-                <td className="border p-2">{user.id}</td>
-                <td className="border p-2">{user.name}</td>
-                <td className="border p-2">{user.email}</td>
-                <td className="border p-2">{user.phone}</td>
-                <td className="border p-2">{user.company.name}</td>
+        <div className="table-container">
+          <table className="user-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Company</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {users.map((user) => (
+                <tr key={user.id}>
+                  <td data-label="ID">{user.id}</td>
+                  <td data-label="Name">{user.name}</td>
+                  <td data-label="Email">{user.email}</td>
+                  <td data-label="Phone">{user.phone}</td>
+                  <td data-label="Company">{user.company.name}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );
