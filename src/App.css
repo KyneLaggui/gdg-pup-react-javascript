@@ -29,6 +29,12 @@
   transition: color 0.3s ease;
 }
 
+.tabs button.active,
+.tabs button:hover {
+  font-weight: 600;
+  color: blue;
+}
+
 .tabs button::before {
   content: "";
   position: absolute;
