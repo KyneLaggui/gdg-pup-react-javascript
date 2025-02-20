@@ -10,7 +10,10 @@ export default function TenziesProject() {
         const newDice = [];
 
         for (let i = 0; i < 10; i++) {
-            const rand = Math.ceil(Math.random() * 6);
+            const rand = { 
+                value: Math.ceil(Math.random() * 6), 
+                isClicked: false 
+            };
             newDice.push(rand);
         }
 
@@ -21,7 +24,9 @@ export default function TenziesProject() {
         setDice(generateAllNewDice());
     }
 
-    const diceElements = dice.map(num => <Die value = {num} />)
+    const diceElements = dice.map(dieObj => (
+        <Die value = {dieObj.value} isHeld = {dieObj.isClicked}/>
+    ));
 
     return ( 
         <div className="project-container">
