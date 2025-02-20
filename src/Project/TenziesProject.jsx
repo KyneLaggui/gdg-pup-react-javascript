@@ -12,7 +12,8 @@ export default function TenziesProject() {
         for (let i = 0; i < 10; i++) {
             const rand = { 
                 value: Math.ceil(Math.random() * 6), 
-                isClicked: false 
+                isClicked: false,
+                id: i + 1 
             };
             newDice.push(rand);
         }
@@ -24,8 +25,18 @@ export default function TenziesProject() {
         setDice(generateAllNewDice());
     }
 
+    function hold(id) {
+        console.log(id);
+    }
+
     const diceElements = dice.map(dieObj => (
-        <Die value = {dieObj.value} isHeld = {dieObj.isClicked}/>
+        <Die 
+            key = {dieObj.id}
+            value = {dieObj.value} 
+            isClicked = {dieObj.isClicked}
+            hold = {hold}
+            id = {dieObj.id}
+        />
     ));
 
     return ( 
