@@ -6,6 +6,9 @@ export default function TenziesProject() {
 
     const [dice, setDice] = useState(generateAllNewDice());
 
+    const gameWon = dice.every(die => die.isClicked) && 
+                    dice.every(die => die.value === dice[0].value);
+
     function generateAllNewDice () {
         const newDice = [];
 
@@ -22,7 +25,6 @@ export default function TenziesProject() {
     }
 
     function rollDice() {
-        // setDice(generateAllNewDice());
         setDice(oldDice => oldDice.map(die =>
             die.isClicked ? die : { ...die, value: Math.ceil(Math.random() * 6) } 
         ));
@@ -47,14 +49,18 @@ export default function TenziesProject() {
     return ( 
         <div className="project-container">
             <main>
-                <h1 className="title">Tenzies</h1>
+                <h1 className="title">
+                    {gameWon ? "Congrats, You Won!" : "Tenzies"} 
+                </h1>
                 <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
 
                 <div className="dice-container">
                     {diceElements}
                 </div>
 
-                <button className="roll-dice-btn" onClick={rollDice}>Roll</button>
+                <button className="roll-dice-btn" onClick={rollDice}>
+                    {gameWon ? "New Game" : "Roll"}
+                </button>
             </main>
         </div>
     )
