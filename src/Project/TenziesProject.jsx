@@ -26,7 +26,9 @@ export default function TenziesProject() {
     }
 
     function hold(id) {
-        console.log(id);
+        setDice(oldDice => oldDice.map(die =>
+            die.id === id ? { ...die, isClicked: !die.isClicked } : die
+        ));
     }
 
     const diceElements = dice.map(dieObj => (
