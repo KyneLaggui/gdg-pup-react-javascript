@@ -4,6 +4,8 @@ import Die from "./Die";
 
 export default function TenziesProject() {
 
+    const [dice, setDice] = useState(generateAllNewDice());
+
     function generateAllNewDice () {
         const newDice = [];
 
@@ -15,22 +17,13 @@ export default function TenziesProject() {
         return newDice;
     }
 
-    console.log(generateAllNewDice());
+    const diceElements = dice.map(num => <Die value = {num} />)
 
     return ( 
         <div className="project-container">
             <main>
                 <div className="dice-container">
-                    <Die value={1}/>
-                    <Die value={1}/>
-                    <Die value={1}/>
-                    <Die value={1}/>
-                    <Die value={1}/>
-                    <Die value={1}/>
-                    <Die value={1}/>
-                    <Die value={1}/>
-                    <Die value={1}/>
-                    <Die value={1}/>
+                    {diceElements}
                 </div>
             </main>
         </div>
