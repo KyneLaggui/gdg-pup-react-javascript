@@ -4,7 +4,7 @@ import Die from "./Die";
 
 export default function TenziesProject() {
 
-    const [dice, setDice] = useState(generateAllNewDice());
+    const [dice, setDice] = useState(() => generateAllNewDice());
 
     const gameWon = dice.every(die => die.isClicked) && 
                     dice.every(die => die.value === dice[0].value);
@@ -24,10 +24,15 @@ export default function TenziesProject() {
         return newDice;
     }
 
-    function rollDice() {
-        setDice(oldDice => oldDice.map(die =>
-            die.isClicked ? die : { ...die, value: Math.ceil(Math.random() * 6) } 
-        ));
+    function rollDice() {   
+        if (!gameWon) {
+            setDice(oldDice => oldDice.map(die =>
+                die.isClicked ? die : { ...die, value: Math.ceil(Math.random() * 6) } 
+            ));    
+        }
+        else {
+            setDice(generateAllNewDice());
+        }
     }
 
     function hold(id) {
