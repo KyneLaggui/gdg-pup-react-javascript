@@ -22,7 +22,10 @@ export default function TenziesProject() {
     }
 
     function rollDice() {
-        setDice(generateAllNewDice());
+        // setDice(generateAllNewDice());
+        setDice(oldDice => oldDice.map(die =>
+            die.isClicked ? die : { ...die, value: Math.ceil(Math.random() * 6) } 
+        ));
     }
 
     function hold(id) {
