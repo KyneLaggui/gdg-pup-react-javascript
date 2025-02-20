@@ -17,6 +17,10 @@ export default function TenziesProject() {
         return newDice;
     }
 
+    function rollDice() {
+        setDice(generateAllNewDice());
+    }
+
     const diceElements = dice.map(num => <Die value = {num} />)
 
     return ( 
@@ -25,6 +29,8 @@ export default function TenziesProject() {
                 <div className="dice-container">
                     {diceElements}
                 </div>
+
+                <button className="roll-dice-btn" onClick={rollDice}>Roll</button>
             </main>
         </div>
     )
