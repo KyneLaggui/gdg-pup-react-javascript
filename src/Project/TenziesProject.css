@@ -1,0 +1,17 @@
+* {
+    box-sizing: border-box;
+}
+
+.project-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    background-color: whitesmoke;
+    width: min(90vw, 520px);
+    aspect-ratio: 1 / 1;
+    border-radius: 5px;
+    box-shadow: 0 0 5px;
+}
