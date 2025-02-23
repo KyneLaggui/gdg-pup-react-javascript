@@ -3,6 +3,7 @@ import AssignmentOne from "./Assignments/AssignmentOne/AssignmentOne";
 import AssignmentTwo from "./Assignments/AssignmentTwo/AssignmentTwo";
 import AssignmentThree from "./Assignments/AssignmentThree/AssignmentThree";
 import AssignmentFour from "./Assignments/AssignmentFour/AssignmentFour";
+import TenziesProject from "./Project/TenziesProject";
 import "./App.css";
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
     { id: "two", label: "Assignment 2" },
     { id: "three", label: "Assignment 3" },
     { id: "four", label: "Assignment 4" },
+    { id: "five", label: "Project" },
   ];
 
   return (
@@ -39,6 +41,7 @@ function App() {
         {selectedTab === "two" && <AssignmentTwo />}
         {selectedTab === "three" && <AssignmentThree />}
         {selectedTab === "four" && <AssignmentFour />}
+        {selectedTab === "five" && <TenziesProject />}
       </div>
     </>
   );
